@@ -28,8 +28,7 @@ const feedbackRouter = require('./routes/feedbackRouter');
 
 var app = express();
 
-const url =
-  'mongodb+srv://edenmed:BAarpGIo9of3qp8c@cluster-edenmed.vmdwax6.mongodb.net/edenmed_db?retryWrites=true&w=majority';
+const url = process.env.mongoURI;
 mongoose
   .connect(url)
   .then(() => console.log('MongoDB successfully connected'))
@@ -47,7 +46,7 @@ app.use(express.json());
 
 app.use(
   session({
-    secret: 'dkkd52xhzuq§KDKJ36SJDHG5DJD29DDHY',
+    secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: false,
   })

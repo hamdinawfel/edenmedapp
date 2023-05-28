@@ -13,14 +13,14 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 exports.getToken = function (user) {
-  return jwt.sign(user, 'dkkd52xhzuq§KDKJ36SJDHG5DJD29DDHY', {
+  return jwt.sign(user, process.env.SECRET_KEY, {
     expiresIn: 3600 * 24 * 7,
   });
 };
 
 var opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = 'dkkd52xhzuq§KDKJ36SJDHG5DJD29DDHY';
+opts.secretOrKey = process.env.SECRET_KEY;
 
 exports.jwtPassport = passport.use(
   new JwtStrategy(opts, (jwt_payload, done) => {
