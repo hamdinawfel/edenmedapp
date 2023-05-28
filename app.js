@@ -7,7 +7,7 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 var cors = require('cors');
 const passport = require('passport');
-require('dotenv').config();
+// require('dotenv').config();
 
 const sliderRouter = require('./routes/sliderRouter');
 const blogRouter = require('./routes/blogRouter');
@@ -30,7 +30,8 @@ const feedbackRouter = require('./routes/feedbackRouter');
 
 var app = express();
 
-const url = process.env.mongoURI;
+const url =
+  'mongodb+srv://edenmed:BAarpGIo9of3qp8c@cluster-edenmed.vmdwax6.mongodb.net/edenmed_db?retryWrites=true&w=majority';
 mongoose
   .connect(url)
   .then(() => console.log('MongoDB successfully connected'))
@@ -48,7 +49,7 @@ app.use(express.json());
 
 app.use(
   session({
-    secret: process.env.SECRET_KEY,
+    secret: 'dkkd52xhzuq§KDKJ36SJDHG5DJD29DDHY',
     resave: false,
     saveUninitialized: false,
   })

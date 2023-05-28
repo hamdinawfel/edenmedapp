@@ -12,10 +12,10 @@ const sendConfirmationEmail = ({email, eventTitle, eventImageUrl, activationCode
     secureConnection: false, // TLS requires secureConnection to be false
     port: 465, // port for secure SMTP
     auth: {
-      user: process.env.NODEMAILER_EMAIL,
-      pass: process.env.NODEMAILER_PASSWORD,
+      user: 'contact@edenmed.tn',
+      pass: '39%T45fhw',
     },
-    from: process.env.NODEMAILER_EMAIL,
+    from: 'contact@edenmed.tn',
     tls: {
       rejectUnauthorized: false,
       // ciphers: 'SSLv3',
@@ -56,7 +56,7 @@ const sendConfirmationEmail = ({email, eventTitle, eventImageUrl, activationCode
       }],
     context: {
               title: eventTitle,
-              eventLink: `${process.env.CONFIRM_MAIL_HOST}#/confirmation/${activationCode}`,
+              eventLink: `$https://edenmed.tn#/confirmation/${activationCode}`,
               eventImageUrl : eventImageUrl,
           } 
   };
