@@ -6,6 +6,7 @@ var logger = require('morgan');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const passport = require('passport');
+var cors = require('cors')
 
 const sliderRouter = require('./routes/sliderRouter');
 const blogRouter = require('./routes/blogRouter');
@@ -35,6 +36,20 @@ mongoose
   .catch((err) => {
     console.log(`DB Connection Error: ${err.message}`);
   });
+
+var whitelist = [
+  'http://localhost:3000',
+  'https://edenmed-dashboard.netlify.app',
+];
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
 
 app.use(logger('dev'));
 app.use(express.json());
