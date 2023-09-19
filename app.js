@@ -37,20 +37,11 @@ mongoose
     console.log(`DB Connection Error: ${err.message}`);
   });
 
-var whitelist = [
-  'http://localhost:3000',
-  'https://edenmed-dashboard.netlify.app',
-];
 var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
-app.use(cors(corsOptions));
+  origin: 'https://edenmed-dashboard.netlify.app',
+  optionsSuccessStatus: 200,
+};
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -80,7 +71,7 @@ app.use('/library/medias', mediaRouter);
 app.use('/library/photos', photoRouter);
 app.use('/messages', messageRouter);
 app.use('/testimonials', testimonialRouter);
-app.use('/users', userRouter);
+app.use('/users', cors(corsOptions), userRouter);
 app.use('/statistics', statisticsRoute);
 app.use('/visitors', visitorRouter);
 app.use('/members', memberRouter);
