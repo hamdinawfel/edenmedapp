@@ -61,24 +61,24 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/slider', sliderRouter);
-app.use('/blogs', blogRouter);
-app.use('/library/documents', documentRouter);
-app.use('/events', eventRouter);
-app.use('/participants', participantRouter);
-app.use('/faqs', faqRouter);
-app.use('/library/medias', mediaRouter);
-app.use('/library/photos', photoRouter);
-app.use('/messages', messageRouter);
-app.use('/testimonials', testimonialRouter);
+app.use('/slider', cors(corsOptions), sliderRouter);
+app.use('/blogs', cors(corsOptions), blogRouter);
+app.use('/library/documents', cors(corsOptions), documentRouter);
+app.use('/events', cors(corsOptions), eventRouter);
+app.use('/participants', cors(corsOptions), participantRouter);
+app.use('/faqs', cors(corsOptions), faqRouter);
+app.use('/library/medias', cors(corsOptions), mediaRouter);
+app.use('/library/photos', cors(corsOptions), photoRouter);
+app.use('/messages', cors(corsOptions), messageRouter);
+app.use('/testimonials', cors(corsOptions), testimonialRouter);
 app.use('/users', cors(corsOptions), userRouter);
-app.use('/statistics', statisticsRoute);
-app.use('/visitors', visitorRouter);
-app.use('/members', memberRouter);
-app.use('/pupup', pupupRouter);
-app.use('/images', imageRouter);
-app.use('/surveys', surveyRouter);
-app.use('/feedbacks', feedbackRouter);
+app.use('/statistics', cors(corsOptions), statisticsRoute);
+app.use('/visitors', cors(corsOptions), visitorRouter);
+app.use('/members', cors(corsOptions), memberRouter);
+app.use('/pupup', cors(corsOptions), pupupRouter);
+app.use('/images', cors(corsOptions), imageRouter);
+app.use('/surveys', cors(corsOptions), surveyRouter);
+app.use('/feedbacks', cors(corsOptions), feedbackRouter);
 
  app.use(express.static('./client/build'));
   app.get('*', (req, res) => {
